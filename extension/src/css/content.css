@@ -1,0 +1,93 @@
+/* Button Container */
+.ai-comment-button-container {
+    display: inline-block;
+    margin-left: 8px;
+    vertical-align: middle;
+}
+
+/* Base Button Style */
+.ai-comment-button {
+    background-color: #0a66c2;
+    color: white;
+    border: none;
+    border-radius: 16px;
+    padding: 4px 12px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 100px;
+    height: 32px;
+}
+
+.ai-comment-button:hover {
+    background-color: #004182;
+}
+
+/* Loading State */
+.ai-comment-button.loading {
+    background-color: #0073b1;
+    cursor: wait;
+    position: relative;
+    overflow: hidden;
+}
+
+.ai-comment-button.loading::after {
+    content: '';
+    position: absolute;
+    left: -100%;
+    width: 200%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.2) 50%,
+        transparent 100%
+    );
+    animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(100%);
+    }
+}
+
+/* Success State */
+.ai-comment-button.success {
+    background-color: #057642;
+}
+
+/* Error State */
+.ai-comment-button.error {
+    background-color: #cc1016;
+}
+
+/* Disabled State */
+.ai-comment-button:disabled {
+    background-color: #888888;
+    cursor: not-allowed;
+}
+
+/* Tooltip */
+.ai-comment-button:hover::before {
+    content: attr(title);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 4px 8px;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    font-size: 12px;
+    border-radius: 4px;
+    white-space: nowrap;
+    pointer-events: none;
+    margin-bottom: 4px;
+} 

@@ -1,0 +1,50 @@
+{
+  "manifest_version": 3,
+  "name": "LinkedIn AI Comment Assistant",
+  "version": "1.0.0",
+  "description": "AI-powered comment suggestions for LinkedIn posts",
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "storage",
+    "clipboardWrite",
+    "cookies"
+  ],
+  "host_permissions": [
+    "https://*.linkedin.com/*"
+  ],
+  "action": {
+    "default_popup": "src/popup.html",
+    "default_icon": {
+      "16": "src/images/icon16.png",
+      "48": "src/images/icon48.png",
+      "128": "src/images/icon128.png"
+    }
+  },
+  "icons": {
+    "16": "src/images/icon16.png",
+    "48": "src/images/icon48.png",
+    "128": "src/images/icon128.png"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://*.linkedin.com/*"],
+      "css": ["src/css/content.css"],
+      "js": ["src/js/content.js"],
+      "run_at": "document_idle",
+      "all_frames": false
+    }
+  ],
+  "background": {
+    "service_worker": "src/js/background.js"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": ["src/js/*", "src/css/*", "src/images/*"],
+      "matches": ["https://*.linkedin.com/*"]
+    }
+  ],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'"
+  }
+} 
